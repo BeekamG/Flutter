@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "kiyya" "\0"
+            VALUE "FileDescription", "beekam" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "kiyya" "\0"
+            VALUE "InternalName", "beekam" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "kiyya.exe" "\0"
-            VALUE "ProductName", "kiyya" "\0"
+            VALUE "OriginalFilename", "beekam.exe" "\0"
+            VALUE "ProductName", "beekam" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
