@@ -10,7 +10,6 @@ class Contact {
     required this.name,
     required this.email,
     required this.phoneNumber,
-    this.isFavorite = false,
+    this.isFavorite = true,
   });
 }
-//Adding isFavorite Field to a Contact Class- Har'a
