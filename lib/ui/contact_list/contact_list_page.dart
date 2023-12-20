@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
 //Populating the Contacts to InitSate
-
+// Adding isFavorite Field to Contact Class
 class ContactsListPage extends StatefulWidget {
   @override
   State<ContactsListPage> createState() => _ContactsListPageState();
@@ -40,6 +40,11 @@ class _ContactsListPageState extends State<ContactsListPage> {
           return ListTile(
             title: Text(_contacts[index].name),
             subtitle: Text(_contacts[index].email),
+            trailing: IconButton(
+                icon: Icon(Icons.star_border),
+                onPressed: () {
+                  print("Tuqi");
+                }),
           );
         },
       ),
