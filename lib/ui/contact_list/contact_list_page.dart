@@ -5,6 +5,7 @@ import 'package:faker/faker.dart';
 //Populating the Contacts to InitSate
 // Adding isFavorite Field to a Contact Class-1
 //Finishing isFavorite UI-2
+//Setting state
 class ContactsListPage extends StatefulWidget {
   @override
   State<ContactsListPage> createState() => _ContactsListPageState();
@@ -42,14 +43,15 @@ class _ContactsListPageState extends State<ContactsListPage> {
             title: Text(_contacts[index].name),
             subtitle: Text(_contacts[index].email),
             trailing: IconButton(
-                icon: Icon(
-                  _contacts[index].isFavorite ? Icons.star : Icons.star_border,
-                  color:
-                      _contacts[index].isFavorite ? Colors.amber : Colors.grey,
-                ),
-                onPressed: () {
-                  print("Tuqi");
-                }),
+              icon: Icon(
+                _contacts[index].isFavorite ? Icons.star : Icons.star_border,
+                color: _contacts[index].isFavorite ? Colors.amber : Colors.grey,
+              ),
+              onPressed: () {
+                _contacts[index].isFavorite = !_contacts[index].isFavorite;
+                print(_contacts[index].isFavorite);
+              },
+            ),
           );
         },
       ),

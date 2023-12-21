@@ -10,6 +10,6 @@ class Contact {
     required this.name,
     required this.email,
     required this.phoneNumber,
-    this.isFavorite = true,
+    this.isFavorite = false,
   });
 }
