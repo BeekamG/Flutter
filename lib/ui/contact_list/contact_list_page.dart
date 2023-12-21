@@ -48,8 +48,9 @@ class _ContactsListPageState extends State<ContactsListPage> {
                 color: _contacts[index].isFavorite ? Colors.amber : Colors.grey,
               ),
               onPressed: () {
-                _contacts[index].isFavorite = !_contacts[index].isFavorite;
-                print(_contacts[index].isFavorite);
+                setState(() {
+                  _contacts[index].isFavorite = !_contacts[index].isFavorite;
+                });
               },
             ),
           );
