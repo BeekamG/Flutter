@@ -6,6 +6,7 @@ import 'package:faker/faker.dart';
 // Adding isFavorite Field to a Contact Class-1
 //Finishing isFavorite UI-2
 //Setting state
+//Sorting Contacts based on isFavorite
 class ContactsListPage extends StatefulWidget {
   @override
   State<ContactsListPage> createState() => _ContactsListPageState();
@@ -27,6 +28,7 @@ class _ContactsListPageState extends State<ContactsListPage> {
     });
   }
 
+  //build func:runs when the state changes
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +52,19 @@ class _ContactsListPageState extends State<ContactsListPage> {
               onPressed: () {
                 setState(() {
                   _contacts[index].isFavorite = !_contacts[index].isFavorite;
+                  //Takes in higher order function which gets passed two contacts
+                  _contacts.sort((a, b) {
+                    if (a.isFavorite) {
+                      //ContactOne will be BEFORE ContactTwo
+                      return -1;
+                    } else if (b.isFavorite) {
+                      //ContactOne will be AFTER ContactTwo
+                      return 1;
+                    } else {
+                      //The position doesn't change
+                      return 0;
+                    }
+                  });
                 });
               },
             ),
