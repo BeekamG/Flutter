@@ -1,5 +1,6 @@
 import 'package:beekam/contact.dart';
 import 'package:flutter/material.dart';
+//Creating a Custom Widget
 class ContactTile extends StatelessWidget {
   const ContactTile({
     super.key,
