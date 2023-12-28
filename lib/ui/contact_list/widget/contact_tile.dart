@@ -1,42 +1,33 @@
-import 'package:beekam/contact.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:beekam/ui/model/contacts_model.dart';
+
 //Creating a Custom Widget
 class ContactTile extends StatelessWidget {
   const ContactTile({
-    super.key,
-    required List<Contact> contacts,
-  }) : _contacts = contacts;
+    Key? key,
+    required this.contactIndex,
+  }) : super(key: key);
 
-  final List<Contact> _contacts;
+  final int contactIndex;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(_contacts[index].name),
-      subtitle: Text(_contacts[index].email),
-      trailing: IconButton(
-        icon: Icon(
-          _contacts[index].isFavorite ? Icons.star : Icons.star_border,
-          color: _contacts[index].isFavorite ? Colors.amber : Colors.grey,
-        ),
-        onPressed: () {
-          setState(() {
-            _contacts[index].isFavorite = !_contacts[index].isFavorite;
-            //Takes in higher order function which gets passed two contacts
-            _contacts.sort((a, b) {
-              if (a.isFavorite) {
-                //ContactOne will be BEFORE ContactTwo
-                return -1;
-              } else if (b.isFavorite) {
-                //ContactOne will be AFTER ContactTwo
-                return 1;
-              } else {
-                //The position doesn't change
-                return 0;
-              }
-            });
-          });
+    return ScopedModelDescendant<ContactsModel>(
+        builder: (context, child, model) {
+      final displayed_contact = model.contacts[contactIndex];
+      return ListTile(
+        title: Text(displayed_contact.name),
+        subtitle: Text(displayed_contact.email),
+        trailing: IconButton(
+            icon: Icon(
+              displayed_contact.isFavorite ? Icons.star : Icons.star_border,
+              color: displayed_contact.isFavorite ? Colors.amber : Colors.grey,
+            ),
+            onPressed: () {
+              model.changeFavoriteStatus(contactIndex);
+            }),
+      );
+    });
   }
-}
-
 }

@@ -1,6 +1,7 @@
-import 'package:beekam/contact.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:beekam/ui/contact_list/widget/contact_tile.dart';
+import 'package:beekam/ui/model/contacts_model.dart';
 import 'package:flutter/material.dart';
-import 'package:faker/faker.dart';
 
 //Populating the Contacts to InitSate
 // Adding isFavorite Field to a Contact Class-1
@@ -13,38 +14,28 @@ class ContactsListPage extends StatefulWidget {
 }
 
 class _ContactsListPageState extends State<ContactsListPage> {
-  //underscore acts like a private acccess modifier.
-  List<Contact> _contacts = List.empty();
-  //Runs when the widget is initialized
-  @override
-  void initState() {
-    super.initState();
-    _contacts = List.generate(50, (index) {
-      return Contact(
-        name: faker.person.firstName() + ' ' + faker.person.lastName(),
-        email: faker.internet.freeEmail(),
-        phoneNumber: faker.randomGenerator.integer(1000000).toString(),
-      );
-    });
-  }
-
   //build func:runs when the state changes
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Contacts'),
-      ),
-      //Displaying a Vertical list and make alignment Center.
-      body: ListView.builder(
-        itemCount: _contacts.length,
-        //Importing and using 3rd library
-        //Runs & builds every single list item
+        appBar: AppBar(
+          title: Text('Contacts'),
+        ),
+        //Displaying a Vertical list and make alignment Center.
+        body: ScopedModelDescendant<ContactsModel>(
+            builder: (context, child, model) {
+          return ListView.builder(
+            itemCount: model.contacts.length,
+            //Importing and using 3rd library
+            //Runs & builds every single list item
+            //Accessing the Model Through ScopedModelDescendant-Dec 28
 
-        itemBuilder: (context, index) {
-          return ContactTile(contacts: _contacts);
-        },
-      ),
-    );
+            itemBuilder: (context, index) {
+              return ContactTile(
+                contactIndex: index,
+              );
+            },
+          );
+        }));
   }
 }
