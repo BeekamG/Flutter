@@ -30,5 +30,6 @@ class ContactsModel extends Model {
         return 0;
       }
     });
+    notifyListeners();
   }
 }

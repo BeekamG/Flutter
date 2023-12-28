@@ -23,12 +23,14 @@ class _ContactsListPageState extends State<ContactsListPage> {
         ),
         //Displaying a Vertical list and make alignment Center.
         body: ScopedModelDescendant<ContactsModel>(
+            //Runs when notifyListeners() is called from the model
             builder: (context, child, model) {
           return ListView.builder(
             itemCount: model.contacts.length,
             //Importing and using 3rd library
             //Runs & builds every single list item
-            //Accessing the Model Through ScopedModelDescendant-Dec 28
+            //Accessing the Model Through ScopedModelDescendant-Dec 28-1
+            //Notifying Listeners of ScopedModel-Dec 28-2
 
             itemBuilder: (context, index) {
               return ContactTile(
